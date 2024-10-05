@@ -83,8 +83,6 @@
       const authContext = inject('authContext');
       const router = useRouter();
       const route = useRoute();
-  
-      // Reactive state
       const directionCaption = ref(null);
       const directionPlacesNumber = ref(0);
       const directionMinBall = ref(0);

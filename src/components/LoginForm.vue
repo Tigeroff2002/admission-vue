@@ -1,10 +1,10 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center bg-dark text-dark" style="min-height: 100vh;">
-      <div class="card p-4" style="max-width: 400px; width: 100%;">
-        <h2 class="text-center mb-4">Вход</h2>
+    <div class="container d-flex justify-content-center align-items-center vh-100 bg-dark">
+      <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
+        <h2 class="text-center mb-4 text-light">Вход</h2>
         <form @submit.prevent="handleSubmit">
           <div class="mb-3">
-            <label for="email" class="form-label">Почта</label>
+            <label for="email" class="form-label text-light">Почта</label>
             <input
               v-model="formData.email"
               type="email"
@@ -18,7 +18,7 @@
           </div>
   
           <div class="mb-3">
-            <label for="password" class="form-label">Пароль</label>
+            <label for="password" class="form-label text-light">Пароль</label>
             <input
               v-model="formData.password"
               type="password"
@@ -31,7 +31,7 @@
             <div v-if="errors.password" class="invalid-feedback">{{ errors.password }}</div>
           </div>
   
-          <button type="submit" class="btn btn-dark w-100">Войти</button>
+          <button type="submit" class="btn btn-primary w-100">Войти</button>
         </form>
       </div>
     </div>
@@ -93,15 +93,16 @@
   
             if (response.status === 200 && response.data['result'] === true) {
               const { abiturient_id, token, is_admin } = response.data;
-              auth.login({ abiturient_id, token, is_admin });
+              const obj = { abiturient_id, token, is_admin };
+              auth.login(obj);
               router.push('/lk');
             } else {
-              errorMessages.email = 'Invalid email or password';
-              errorMessages.password = 'Invalid email or password';
+              errorMessages.email = 'Неверный email или пароль';
+              errorMessages.password = 'Неверный email или пароль';
             }
           } catch (error) {
-            errorMessages.email = 'An error occurred';
-            errorMessages.password = 'An error occurred';
+            errorMessages.email = 'Произошла ошибка';
+            errorMessages.password = 'Произошла ошибка';
           }
         }
       };
@@ -118,7 +119,27 @@
   </script>
   
   <style scoped>
-  .invalid-feedback {
-    color: red;
+  .bg-dark {
+    background-color: #343a40;
   }
-  </style>  
+  
+  .card {
+    background-color: #212529;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .text-light {
+    color: #f8f9fa !important;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  </style>
+  

@@ -1,6 +1,6 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center bg-dark text-dark" style="min-height: 100vh;">
-      <div class="card p-4" style="max-width: 400px; width: 100%;">
+    <div class="registration-container">
+      <div class="card p-4">
         <h2 class="text-center mb-4">Регистрация</h2>
         <form @submit.prevent="handleSubmit">
           <div class="mb-3">
@@ -59,16 +59,17 @@
             <div v-if="errors.password" class="invalid-feedback">{{ errors.password }}</div>
           </div>
   
-          <div class="mb-3">
+          <div class="mb-3 form-check">
             <input
               v-model="formData.is_admin"
               type="checkbox"
               id="isAdmin"
+              class="form-check-input"
             />
-            <label for="isAdmin" class="form-label">Вы админ?</label>
+            <label for="isAdmin" class="form-check-label">Вы админ?</label>
           </div>
   
-          <button type="submit" class="btn btn-dark w-100">Зарегистрироваться</button>
+          <button type="submit" class="btn btn-primary w-100">Зарегистрироваться</button>
         </form>
       </div>
     </div>
@@ -165,8 +166,38 @@
   </script>
   
   <style scoped>
+  .registration-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #343a40; /* Dark background */
+  }
+  
+  .card {
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
   .invalid-feedback {
     color: red;
+  }
+  
+  .btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Darker on hover */
+    border-color: #0056b3;
   }
   </style>
   

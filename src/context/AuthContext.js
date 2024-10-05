@@ -8,13 +8,13 @@ export const useAuthProvider = () => {
   });
 
   const login = (data) => {
-    state.userData = data;
-    localStorage.setItem('userData', JSON.stringify(data));
+    state.userData = { ...data }; 
+    localStorage.setItem('userData', JSON.stringify(state.userData));
   };
 
   const logout = () => {
-    state.userData = {};
-    localStorage.removeItem('userData');
+    state.userData = {};  
+    localStorage.removeItem('userData'); 
   };
 
   provide(AuthContextSymbol, {
