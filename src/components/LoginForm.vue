@@ -94,6 +94,7 @@
             if (response.status === 200 && response.data['result'] === true) {
               const { abiturient_id, token, is_admin } = response.data;
               const obj = { abiturient_id, token, is_admin };
+              auth.logout();
               auth.login(obj);
               router.push('/lk');
             } else {

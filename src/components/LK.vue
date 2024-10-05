@@ -93,6 +93,8 @@
   
   <script>
   import axios from 'axios';
+  import { useRouter } from 'vue-router';
+  import { useAuth } from '../context/AuthContext';
   
   export default {
     name: 'LK',
@@ -110,11 +112,21 @@
         formError: '',
       };
     },
+    setup() {
+      const router = useRouter();
+      const authContext = useAuth();
+
+      if (!authContext) {
+      throw new Error('authContext not found');
+    }
+
+      return { router, authContext };
+    },
     mounted() {
-      const userData = this.$root.userData;
+      const { userData } = this.authContext;
   
       if (!userData || !userData.token) {
-        this.$router.push('/');
+        this.router.push('/');
         return;
       }
   
@@ -131,7 +143,7 @@
             this.directionsLinks = content.directions_links || [];
             this.isAdmin = isAdmin;
           } else {
-            this.$router.push('/');
+            this.router.push('/');
           }
         })
         .catch((error) => {

@@ -80,8 +80,8 @@
   
   <script>
   import axios from 'axios';
-  import { inject } from 'vue';
   import { useRouter } from 'vue-router';
+  import { useAuth } from '../context/AuthContext';
   
   export default {
     data() {
@@ -98,7 +98,12 @@
     },
     setup() {
       const router = useRouter();
-      const authContext = inject('authContext');
+      const authContext = useAuth();
+
+      if (!authContext) {
+        throw new Error('authContext not found');
+    }
+
       return { router, authContext };
     },
     mounted() {
@@ -109,7 +114,7 @@
         const { userData } = this.authContext;
   
         if (!userData || !userData.token) {
-          this.$router.push('/');
+          this.router.push('/');
           return;
         }
   
@@ -125,7 +130,7 @@
               this.abiturients = content.abiturients || [];
               this.isAdmin = isAdmin;
             } else {
-              this.$router.push('/');
+              this.router.push('/lk');
             }
           })
           .catch((error) => {
