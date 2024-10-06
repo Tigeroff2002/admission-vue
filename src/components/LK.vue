@@ -13,6 +13,8 @@
         <div v-if="isAdmin" class="text-center">
           <h2 class="mt-2">Кабинет администратора {{ name }}</h2>
           <br />
+          <button class="btn btn-dark" @click="handleLogout">Выйти</button>
+          <br /><br />
           <button class="btn btn-dark" @click="navigateToAdminLK">Панель абитуриентов</button>
           <br /><br />
           <button class="btn btn-dark mt-3" @click="toggleDirectionForm">
@@ -60,6 +62,8 @@
         <div v-else class="bg-light text-dark">
           <h2 class="mt-2">Ваш личный кабинет, {{ name }}</h2>
           <br />
+          <button class="btn btn-dark" @click="handleLogout">Выйти</button>
+          <br /><br />
           <h4 class="mt-2" v-if="directionsLinks.length">Список ваших направлений:</h4>
           <p v-else class="text-center">Пока нет данных для отображения.</p>
   
@@ -80,7 +84,7 @@
                   <td>{{ item.place }}</td>
                   <td>{{ item.mark }}</td>
                   <td>{{ item.admission_status }}</td>
-                  <td>{{ item.priority_number }}</td>
+                  <td>{{ item.priotitet_number }}</td>
                 </tr>
               </tbody>
             </table>
@@ -117,7 +121,7 @@
       const authContext = useAuth();
 
       if (!authContext) {
-      throw new Error('authContext not found');
+        throw new Error('authContext not found');
     }
 
       return { router, authContext };
@@ -153,6 +157,10 @@
     methods: {
       navigateToAdminLK() {
         this.$router.push('/adminLK');
+      },
+      handleLogout(){
+        this.authContext.logout();
+        this.router.push('/');
       },
       toggleDirectionForm() {
         this.showDirectionForm = !this.showDirectionForm;
