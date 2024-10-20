@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <router-link class="navbar-brand" to="/">Домашняя страница</router-link>
         <div class="d-flex">
-          <template v-if="isAuthenticated">
+<!--           <template v-if="isAuthenticated">
             <button class="btn btn-outline-light" @click="logout">Выйти</button>
             <button class="btn btn-outline-light" @click="goToAllDirections">Все направления</button>
             <button class="btn btn-outline-light" @click="goToLK">Ваш ЛК</button>
@@ -11,7 +11,12 @@
           <template v-else>
             <router-link class="btn btn-outline-light" to="/login">Страница авторизации</router-link>
             <router-link class="btn btn-outline-light" to="/register">Страница регистрации</router-link>
-          </template>
+          </template> -->
+          <button class="btn btn-outline-light" @click="logout">Выйти</button>
+          <button class="btn btn-outline-light" @click="goToAllDirections">Все направления</button>
+          <button class="btn btn-outline-light" @click="goToLK">Ваш ЛК</button>
+          <router-link class="btn btn-outline-light" to="/login">Страница авторизации</router-link>
+          <router-link class="btn btn-outline-light" to="/register">Страница регистрации</router-link>
         </div>
       </div>
     </nav>

@@ -78,14 +78,14 @@
   <script>
   import { reactive } from 'vue';
   import { useRouter } from 'vue-router';
-  import axios from 'axios';
-  import { useAuth } from '../context/AuthContext';
+/*   import axios from 'axios'; */
+/*   import { useAuth } from '../context/AuthContext'; */
   
   export default {
     name: 'RegistrationForm',
     setup() {
       const router = useRouter();
-      const auth = useAuth();
+/*       const auth = useAuth(); */
   
       const formData = reactive({
         firstName: '',
@@ -128,7 +128,9 @@
       const handleSubmit = async () => {
         handleChange();
   
-        if (!errors.firstName && !errors.secondName && !errors.email && !errors.password) {
+        router.push('/lk');
+
+/*         if (!errors.firstName && !errors.secondName && !errors.email && !errors.password) {
           try {
             const response = await axios.post('http://localhost:8000/register', {
               email: formData.email,
@@ -152,7 +154,7 @@
           }
         } else {
           alert('Пожалуйста, исправьте ошибки в форме.');
-        }
+        } */
       };
   
       return {

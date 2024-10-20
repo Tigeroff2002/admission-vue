@@ -14,6 +14,16 @@
               Страница авторизации
             </router-link>
           </li>
+          <li class="list-group-item bg-transparent">
+            <router-link to="/lk" class="text-decoration-none link">
+              Страница личного кабинета
+            </router-link>
+          </li>
+          <li class="list-group-item bg-transparent">
+            <router-link to="/directions" class="text-decoration-none link">
+              Страница направлений
+            </router-link>
+          </li>
         </ul>
       </nav>
     </div>

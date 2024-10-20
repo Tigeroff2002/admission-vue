@@ -40,14 +40,14 @@
   <script>
   import { reactive } from 'vue';
   import { useRouter } from 'vue-router';
-  import axios from 'axios';
-  import { useAuth } from '../context/AuthContext';
+/*   import axios from 'axios'; */
+/*   import { useAuth } from '../context/AuthContext'; */
   
   export default {
     name: 'LoginForm',
     setup() {
       const router = useRouter();
-      const auth = useAuth();
+/*       const auth = useAuth(); */
   
       const formData = reactive({
         email: '',
@@ -84,7 +84,10 @@
       };
   
       const handleSubmit = async () => {
-        if (!errors.email && !errors.password) {
+
+        router.push('/lk');
+
+/*         if (!errors.email && !errors.password) {
           try {
             const response = await axios.post('http://localhost:8000/login', {
               email: formData.email,
@@ -105,7 +108,7 @@
             errorMessages.email = 'Произошла ошибка';
             errorMessages.password = 'Произошла ошибка';
           }
-        }
+        } */
       };
   
       return {

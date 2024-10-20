@@ -80,7 +80,7 @@
                   <td>{{ item.place }}</td>
                   <td>{{ item.mark }}</td>
                   <td>{{ item.admission_status }}</td>
-                  <td>{{ item.priority_number }}</td>
+                  <td>{{ item.priotitet_number }}</td>
                 </tr>
               </tbody>
             </table>
@@ -92,7 +92,7 @@
   </template>
   
   <script>
-  import axios from 'axios';
+/*   import axios from 'axios'; */
   import { useRouter } from 'vue-router';
   import { useAuth } from '../context/AuthContext';
   
@@ -100,8 +100,25 @@
     name: 'LK',
     data() {
       return {
-        name: '',
-        directionsLinks: [],
+        name: 'Kirill Parakhin',
+        directionsLinks: [
+              {
+            "direction_id": 1,
+            "direction_caption": "PRI",
+            "place": 1,
+            "mark": 84,
+            "admission_status": "request_in_progress",
+            "priotitet_number": 1
+        },
+        {
+            "direction_id": 2,
+            "direction_caption": "IST",
+            "place": 2,
+            "mark": 78,
+            "admission_status": "request_in_progress",
+            "priotitet_number": 2
+        }
+        ],
         profilePictureUrl: 'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',
         isAdmin: false,
         showAdminLK: false,
@@ -123,18 +140,18 @@
       return { router, authContext };
     },
     mounted() {
-      const { userData } = this.authContext;
+/*       const { userData } = this.authContext; */
   
-      if (!userData || !userData.token) {
+/*       if (!userData || !userData.token) {
         this.router.push('/');
         return;
-      }
+      } */
   
-      const isAdmin = userData.is_admin || false;
+/*       const isAdmin = userData.is_admin || false;
       const abiturient_id = userData.abiturient_id;
-      const token = userData.token;
+      const token = userData.token; */
   
-      axios
+/*       axios
         .post('http://localhost:8000/lk', { abiturient_id, token })
         .then((response) => {
           if (response.status === 200 && response.data.result === true) {
@@ -148,7 +165,7 @@
         })
         .catch((error) => {
           console.log('Error with API request', error);
-        });
+        }); */
     },
     methods: {
       navigateToAdminLK() {
@@ -172,19 +189,19 @@
           return;
         }
   
-        const userData = this.$root.userData;
+/*         const userData = this.$root.userData;
         const abiturient_id = userData.abiturient_id;
-        const token = userData.token;
+        const token = userData.token; */
   
-        const requestData = {
+/*         const requestData = {
           direction_caption: directionName,
           budget_places_number: budgetPlaces,
           min_ball: minBall,
           abiturient_id,
           token,
-        };
+        }; */
   
-        axios
+/*         axios
           .post('http://localhost:8000/directions/addNew', requestData)
           .then((response) => {
             if (response.status === 200 && response.data.result === true) {
@@ -197,7 +214,7 @@
           .catch((error) => {
             console.log('Error with API request', error);
             this.formError = 'Error with API request';
-          });
+          }); */
       },
     },
   };

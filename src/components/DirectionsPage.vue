@@ -38,14 +38,24 @@
   
   <script>
   import { inject } from 'vue';
-  import axios from 'axios';
+/*   import axios from 'axios'; */
   import { useRouter } from 'vue-router';
   
   export default {
     data() {
       return {
-        directions: [],
-        isLoading: true,
+        directions: [
+            {
+            "direction_id": 1,
+            "direction_caption": "PRI"
+        },
+        {
+            "direction_id": 2,
+            "direction_caption": "IST"
+        }          
+        ],
+/*         isLoading: true, */
+        isLoading: false,
         error: null,
       };
     },
@@ -59,17 +69,17 @@
     },
     methods: {
       fetchDirections() {
-        const { userData } = this.authContext;
+/*         const { userData } = this.authContext;
   
         if (!userData || !userData.token) {
           this.$router.push('/');
           return;
-        }
+        } */
   
-        const abiturient_id = userData.abiturient_id;
+/*         const abiturient_id = userData.abiturient_id;
         const token = userData.token;
-  
-        axios
+   */
+/*         axios
           .post('http://localhost:8000/directions', { abiturient_id, token })
           .then((response) => {
             if (response.status === 200 && response.data.result) {
@@ -83,7 +93,7 @@
             this.error = 'Error with API request';
             this.isLoading = false;
             console.error('Error with API request', error);
-          });
+          }); */
       },
       handleRowClick(direction_id) {
         this.$router.push(`/direction/${direction_id}`);
